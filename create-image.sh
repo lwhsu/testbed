@@ -1,9 +1,8 @@
 #!/bin/sh
 
-DESTDIR=/home/lwhsu/dest
-ARTIFACTS_DIR=/home/lwhsu/artifact
-IMGBASE=/home/lwhsu/RPi3.img
-IMAGE_NAME=${IMGBASE##${WORKDIR}}
+WORKDIR=${WORKSPACE}
+
+DESTDIR=${WORKSPACE}/dest
 
 DTB_DIR="/usr/local/share/rpi-firmware"
 DTB="bcm2710-rpi-3-b.dtb"
@@ -118,9 +117,10 @@ arm_create_user() {
 arm_install_base() {
 	mount /dev/${mddev}s2a ${DESTDIR}
 
-	tar Jxf ${ARTIFACTS_DIR}/base.txz -C ${DESTDIR}
-	tar Jxf ${ARTIFACTS_DIR}/kernel.txz -C ${DESTDIR}
-	tar Jxf ${ARTIFACTS_DIR}/tests.txz -C ${DESTDIR}
+	for f in ${DIST_PACKAGES}
+	do
+		tar Jxf ${ARTIFACTS_DIR}/${f}.txz -C ${DESTDIR}
+	done
 
 	mkdir -p ${DESTDIR}/boot/msdos
 
@@ -151,9 +151,9 @@ EOF
 }
 
 mkdir -p ${DESTDIR}
-rm -f ${IMAGE_NAME}
-truncate -s ${IMAGE_SIZE} ${IMAGE_NAME}
-mddev=$(mdconfig -f ${IMGBASE##${CHROOTDIR}} ${MD_ARGS})
+rm -f ${IMGBASE}
+truncate -s ${IMAGE_SIZE} ${IMGBASE}
+mddev=$(mdconfig -f ${IMGBASE} ${MD_ARGS})
 
 arm_create_disk
 arm_install_base

@@ -25,3 +25,4 @@ fi
 OUTPUT=$(($DEV - 1))
 ssh -l ${ID} -i ${KEY} ${CONTROLLER_IP} \
 	"sudo gpioctl -c ${GPIO_PIN} OUT; sudo gpioctl ${GPIO_PIN} ${OUTPUT}"
+sleep 2
