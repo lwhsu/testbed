@@ -33,6 +33,7 @@ sudo -E sh -ex ${script_base}/create-image.sh
 sh -ex ${script_base}/swtich-sd.sh 1
 sudo usbconfig -d ${USB_DEV} power_off
 sudo usbconfig -d ${USB_DEV} power_on
+sleep 2
 sudo sh -c "pv ${IMGBASE} > /dev/da0"
 
 ${script_base}/power.sh 1 off
