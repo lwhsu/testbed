@@ -23,7 +23,7 @@ export IMG_NAME=RPi3.img
 export IMGBASE=${WORKSPACE}/${IMG_NAME}
 
 export SD_DEV=/dev/da0
-export USB_DEV=0.6
+export USB_DEV=0.3
 
 script_base=$(dirname $(realpath $0))
 
