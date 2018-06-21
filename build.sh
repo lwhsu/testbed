@@ -46,4 +46,4 @@ spawn sudo cu -s 115200 -l /dev/cuaU0; \
 expect \"login:\" { send \"\r~.\r\" }
 "
 
-./${script_base}/power.sh 1 off
+${script_base}/power.sh 1 off
