@@ -25,17 +25,19 @@ export IMGBASE=${WORKSPACE}/${IMG_NAME}
 export SD_DEV=/dev/da0
 export USB_DEV=0.6
 
-sh -ex fetch-artifact.sh
-sudo -E sh -ex create-image.sh
+script_base=$(dirname $(realpath $0))
 
-sh -ex swtich-sd.sh 1
+sh -ex ${script_base}/fetch-artifact.sh
+sudo -E sh -ex ${script_base}/create-image.sh
+
+sh -ex ${script_base}/swtich-sd.sh 1
 sudo usbconfig -d ${USB_DEV} power_off
 sudo usbconfig -d ${USB_DEV} power_on
 sudo sh -c "pv ${IMGBASE} > /dev/da0"
 
-./power.sh 1 off
+${script_base}/power.sh 1 off
 sh -ex swtich-sd.sh 2
-./power.sh 1 on
+${script_base}/power.sh 1 on
 
 expect -c "\
 set timeout 300; \
@@ -43,4 +45,4 @@ spawn sudo cu -s 115200 -l /dev/cuaU0; \
 expect \"login:\" { send \"\r~.\r\" }
 "
 
-./power.sh 1 off
+./${script_base}/power.sh 1 off
