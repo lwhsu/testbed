@@ -37,7 +37,7 @@ sleep 2
 sudo sh -c "pv ${IMGBASE} > /dev/da0"
 
 ${script_base}/power.sh 1 off
-sh -ex swtich-sd.sh 2
+sh -ex ${script_base}/swtich-sd.sh 2
 ${script_base}/power.sh 1 on
 
 expect -c "\
