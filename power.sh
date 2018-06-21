@@ -23,7 +23,7 @@ fi
 
 case $CMD in
 [Oo][Nn]|[Oo][Ff][Ff])
-	( printf "1\r${CMD} ${PORT}\r"; sleep 3; printf "logout\r" ) | nc ${RPC_IP} 23
+	( printf "1\r${CMD} ${PORT}\r"; sleep 3; printf "logout\r" ) | nc ${RPC_IP} 23 | grep "Outlet ${PORT}"
 	;;
 [Ss][Tt][Aa][Tt][Uu][Ss])
 	( printf "1\rlogout\r" ) | nc ${RPC_IP} 23 | grep "Outlet ${PORT}"

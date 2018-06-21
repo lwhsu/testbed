@@ -2,7 +2,7 @@
 
 CONTROLLER_IP=192.168.11.98
 ID=freebsd
-KEY=/home/lwhsu/key/id_ed25519
+KEY=/jenkins/key/id_ed25519
 GPIO_PIN=23
 
 DEV=$1
