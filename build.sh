@@ -40,10 +40,15 @@ ${script_base}/power.sh 1 off
 sh -ex ${script_base}/swtich-sd.sh 2
 ${script_base}/power.sh 1 on
 
+set +e
 expect -c "\
 set timeout 300; \
 spawn sudo cu -s 115200 -l /dev/cuaU0; \
 expect \"login:\" { send \"\r~.\r\" }
+expect timeout { return 1 }
 "
+set -e
+rc=$?
 
 ${script_base}/power.sh 1 off
+exit $rc
