@@ -27,6 +27,9 @@ export USB_DEV=0.3
 
 script_base=$(dirname $(realpath $0))
 
+# update env
+sudo pkg install -y u-boot-rpi3 rpi-firmware
+
 sh -ex ${script_base}/fetch-artifact.sh
 sudo -E sh -ex ${script_base}/create-image.sh
 
