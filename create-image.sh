@@ -126,6 +126,8 @@ arm_install_base() {
 
 	arm_create_user
 
+	echo 'boot_multicons="YES"' >> ${DESTDIR}/boot/loader.conf
+
 	cat > ${DESTDIR}/etc/fstab << EOF
 # Custom /etc/fstab for FreeBSD embedded images
 /dev/ufs/rootfs   /       ufs     rw      1       1
