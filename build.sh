@@ -53,5 +53,4 @@ expect timeout { return 1 }
 set -e
 rc=$?
 
-${script_base}/power.sh 1 off
 exit $rc
