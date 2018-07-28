@@ -1,0 +1,16 @@
+#!/usr/local/bin/expect -f
+
+set timeout 30
+
+spawn {*}$argv
+
+expect {
+	timeout {
+		send \024
+		exp_continue
+	}
+}
+
+lassign [wait] pid spawnid os_error_flag value
+
+exit $value

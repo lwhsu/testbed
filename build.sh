@@ -37,7 +37,7 @@ sh -ex ${script_base}/swtich-sd.sh 1
 sudo usbconfig -d ${USB_DEV} power_off
 sudo usbconfig -d ${USB_DEV} power_on
 sleep 2
-sudo sh -c "pv ${IMGBASE} > /dev/da0"
+./auto-ctrl-t.exp sudo dd if=${IMGBASE} of=/dev/da0
 
 ${script_base}/power.sh 1 off
 sh -ex ${script_base}/swtich-sd.sh 2
