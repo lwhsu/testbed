@@ -71,7 +71,7 @@ arm_install_uboot() {
 	mkdir -p ${FATMOUNT}/EFI/BOOT
 	#cp -p ${BOOTFILES}/efi/loader/loader.efi \
 	#	${FATMOUNT}/EFI/BOOT/bootaa64.efi
-	cp ${UFSMOUNT}/boot/loader_4th.efi \
+	cp ${UFSMOUNT}/boot/loader_lua.efi \
 		${FATMOUNT}/EFI/BOOT/bootaa64.efi
 	touch ${UFSMOUNT}/firstboot
 	sync
